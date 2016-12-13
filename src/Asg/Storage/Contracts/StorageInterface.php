@@ -20,7 +20,7 @@ interface StorageInterface {
 
     /**
      * @param string $name;
-     * @return array;
+     * @return array|null;
      * */
     public function get($name);
 
@@ -29,6 +29,8 @@ interface StorageInterface {
      * */
     public function destroy($name);
 
+
+    public function clear();
     /**
      * @param string $name;
      * @return bool;

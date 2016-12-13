@@ -12,10 +12,9 @@ interface SimpleSocialAuthInterface {
 
     /**
      * @param string $callbackUrl;
-     * @param string[] $options;
      * @return void;
      * */
-    public function login($callbackUrl = '', $options = []);
+    public function login($callbackUrl = '');
 
     /**
      * @return int;
@@ -41,5 +40,11 @@ interface SimpleSocialAuthInterface {
      * @return SimpleSocialAuthInterface;
      * */
     public function setCallbackUrl($callbackUrl);
+
+    /**
+     * @param array $options;
+     * @return SimpleSocialAuthInterface;
+     * */
+    public function setOptions(array $options);
 
 }

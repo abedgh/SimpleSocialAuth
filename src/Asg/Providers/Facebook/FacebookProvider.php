@@ -23,8 +23,7 @@ class FacebookProvider extends BaseProvider{
 
     protected $providerId = 1;
     protected $providerName = 'FACEBOOK';
-    protected $callbackUrl = null;
-    protected $options = [];
+
     /**
      * @var \Facebook\Facebook
      * */
@@ -36,6 +35,7 @@ class FacebookProvider extends BaseProvider{
         $secret = $this->getConfigKeySecret();
 
         $this->callbackUrl = isset($this->config['callback_url'])?$this->config['callback_url']:null;
+        $this->setOptions(isset($this->config['options'])?$this->config['options']:[]);
 
         if ($id != null && $secret != null) {
 
@@ -51,18 +51,17 @@ class FacebookProvider extends BaseProvider{
 
     /**
      * @param string $callbackUrl ;
-     * @param string[] $options ;
      * @throws SocialAuthInvalidParams
      */
-    public function login($callbackUrl = '', $options = [])
+    public function login($callbackUrl = '')
     {
         $callbackUrl = !empty($callbackUrl)?$callbackUrl:$this->getCallbackUrl();
         if ($callbackUrl == '' || $callbackUrl == null){
             throw new SocialAuthInvalidParams('Callback url cant be empty');
         }
-        $permissions = array_merge($this->options,$options);
+
         $helper = $this->fb->getRedirectLoginHelper();
-        $redirectUrl = $helper->getLoginUrl($callbackUrl,$permissions);
+        $redirectUrl = $helper->getLoginUrl($callbackUrl,$this->options);
         $this->redirect($redirectUrl);
     }
 

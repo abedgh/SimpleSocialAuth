@@ -17,6 +17,7 @@ abstract class BaseProvider implements SimpleSocialAuthInterface {
     protected $providerName = null;
     protected $callbackUrl = null;
     protected $config = [];
+    protected $options = [];
 
     /**
      * @return int;
@@ -55,6 +56,21 @@ abstract class BaseProvider implements SimpleSocialAuthInterface {
         }
         return $this;
     }
+
+    /**
+     * @param array $options ;
+     * @return SimpleSocialAuthInterface ;
+     * @throws SocialAuthInvalidParams
+     */
+    public function setOptions(array $options)
+    {
+        if (is_array($options)) {
+            $this->options = $options;
+        }else{
+            throw new SocialAuthInvalidParams('Options must be an array');
+        }
+    }
+
     /**
      * @access : protected
      * @return string|null

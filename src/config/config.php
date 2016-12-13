@@ -6,7 +6,6 @@
  * Time: 6:35 PM
  */
 
-
 return [
     'Facebook'=>[
         'options' => ['email'],
@@ -16,9 +15,10 @@ return [
         ]
     ],
     'Twitter'=>[
+        'options' => ['include_email' => 'true', 'include_entities' => 'false', 'skip_status' => 'true'],
         'keys'=>[
-            'id'    => '',
-            'secret' => ''
+            'id'    => 'twitter_123',
+            'secret' => 'secret_password'
         ]
     ]
 ];

@@ -8,26 +8,23 @@
 
 namespace Asg\Storage;
 
-
 use Asg\Storage\Contracts\StorageInterface;
 
 class SessionStorage implements StorageInterface{
 
-    protected $prefixSessionId = 'Asg::';
     protected $sessionId = 'SessionStorageId';
 
     function __construct($sessionId = null){
         if ($sessionId != null) {
-            $this->sessionId = $sessionId;
+           $this->sessionId = $sessionId;
         }
+        $_SESSION[$this->sessionId] = [];
         $this->startSession();
     }
 
     protected function startSession()
     {
         if (session_status() != PHP_SESSION_ACTIVE) {
-            ini_set('session.name',$this->prefixSessionId.substr(md5($this->sessionId),0,5));
-            ini_set('session.use_strict_mode', 1);
             session_start();
         }
     }
@@ -39,16 +36,19 @@ class SessionStorage implements StorageInterface{
      * */
     public function set($name, array $value)
     {
-
+        $_SESSION[$this->sessionId][$name] = $value;
     }
 
     /**
      * @param string $name ;
-     * @return array;
+     * @return array|null;
      * */
     public function get($name)
     {
-        // TODO: Implement get() method.
+        if (!$this->exists($name)){
+            return null;
+        }
+        return $_SESSION[$this->sessionId][$name];
     }
 
     /**
@@ -56,7 +56,9 @@ class SessionStorage implements StorageInterface{
      * */
     public function destroy($name)
     {
-        // TODO: Implement destroy() method.
+        if ($this->exists($name) ) {
+            unset($_SESSION[$this->sessionId][$name]);
+        }
     }
 
     /**
@@ -65,6 +67,13 @@ class SessionStorage implements StorageInterface{
      * */
     public function exists($name)
     {
-        // TODO: Implement exists() method.
+        return isset($_SESSION[$this->sessionId][$name]);
+    }
+
+    /**
+     * @return void;
+     * */
+    public function clear(){
+        unset($_SESSION[$this->sessionId]);
     }
 }

@@ -37,7 +37,7 @@ interface SocialResponseInterface {
 
     /**
      * @param string $name;
-     * @return mixed;
+     * @return mixed|null;
      * */
     public function getField($name);
 

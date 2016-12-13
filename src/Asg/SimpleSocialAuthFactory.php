@@ -9,7 +9,6 @@
 namespace Asg;
 
 use Asg\Exceptions\SocialAuthInvalidInterface;
-use Asg\Exceptions\SocialAuthInvalidParams;
 use Asg\Exceptions\SocialAuthProviderNotFound;
 use Asg\Providers\Contracts\SimpleSocialAuthInterface;
 
@@ -17,9 +16,10 @@ class SimpleSocialAuthFactory {
 
     protected static $classMaps = [
         'Facebook' => \Asg\Providers\Facebook\FacebookProvider::class,
+        'Twitter' => \Asg\Providers\Twitter\TwitterProvider::class,
     ];
     /**
-     * @access : Public static;
+     * @access Public static;
      * @param string $provider ;
      * @param string[] $config ;
      * @return Providers\Contracts\SimpleSocialAuthInterface ;
@@ -39,8 +39,8 @@ class SimpleSocialAuthFactory {
     }
 
     /**
-     * @description : Used to register new classes and maps them to allow to users to extend custom classes.
-     * @access : Public static;
+     * @description : Used to register new classes and mapped them to allow to extend custom classes.
+     * @access Public static;
      * @param string $provider ;
      * @param string $className ;
      * @throws SocialAuthInvalidInterface

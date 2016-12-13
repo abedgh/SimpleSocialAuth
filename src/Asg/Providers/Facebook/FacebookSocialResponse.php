@@ -70,13 +70,20 @@ class FacebookSocialResponse extends BaseSocialResponse{
         return $this->graphUser->getField('verified',false);
     }
 
-
-
     /**
      * @return mixed;
      * */
     public function payload()
     {
         return $this->graphUser;
+    }
+
+    /**
+     * @param string $name ;
+     * @return mixed;
+     * */
+    public function getField($name)
+    {
+        return $this->graphUser->getField($name,null);
     }
 }
