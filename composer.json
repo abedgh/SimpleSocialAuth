@@ -1,0 +1,23 @@
+{
+  "name": "asg/SimpleSocialAuth",
+  "description": "SimpleSocialAuth library for social OAuth APis: facebook, twitter ..etc",
+  "keywords": ["social", "auth", "facebook", "twitter", "google","oauth"],
+  "license": "MIT",
+  "type": "library",
+  "require": {
+    "php": ">=5.4",
+    "facebook/graph-sdk": "^5.4",
+    "abraham/twitteroauth": "^0.6.6"
+  },
+  "autoload": {
+    "psr-4": {
+      "Asg\\" : "src/Asg/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Abed Ghazaleh",
+      "email": "abed.gh@gmail.com"
+    }
+  ]
+}
