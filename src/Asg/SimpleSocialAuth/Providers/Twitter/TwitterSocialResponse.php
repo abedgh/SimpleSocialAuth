@@ -6,10 +6,10 @@
  * Time: 7:56 PM
  */
 
-namespace Asg\Providers\Twitter;
+namespace Asg\SimpleSocialAuth\Providers\Twitter;
 
 
-use Asg\Providers\BaseSocialResponse;
+use Asg\SimpleSocialAuth\Providers\BaseSocialResponse;
 
 class TwitterSocialResponse extends BaseSocialResponse{
 

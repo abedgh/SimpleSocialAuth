@@ -6,7 +6,7 @@
  * Time: 6:32 PM
  */
 
-namespace Asg\Exceptions;
+namespace Asg\SimpleSocialAuth\Exceptions;
 
 
 class SocialAuthProviderNotFound extends \Exception{}

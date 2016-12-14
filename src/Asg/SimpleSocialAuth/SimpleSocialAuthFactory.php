@@ -6,17 +6,17 @@
  * Time: 6:14 PM
  */
 
-namespace Asg;
+namespace Asg\SimpleSocialAuth;
 
-use Asg\Exceptions\SocialAuthInvalidInterface;
-use Asg\Exceptions\SocialAuthProviderNotFound;
-use Asg\Providers\Contracts\SimpleSocialAuthInterface;
+use Asg\SimpleSocialAuth\Exceptions\SocialAuthInvalidInterface;
+use Asg\SimpleSocialAuth\Exceptions\SocialAuthProviderNotFound;
+use Asg\SimpleSocialAuth\Providers\Contracts\SimpleSocialAuthInterface;
 
 class SimpleSocialAuthFactory {
 
     protected static $classMaps = [
-        'Facebook' => \Asg\Providers\Facebook\FacebookProvider::class,
-        'Twitter' => \Asg\Providers\Twitter\TwitterProvider::class,
+        'Facebook' => \Asg\SimpleSocialAuth\Providers\Facebook\FacebookProvider::class,
+        'Twitter' => \Asg\SimpleSocialAuth\Providers\Twitter\TwitterProvider::class,
     ];
     /**
      * @access Public static;

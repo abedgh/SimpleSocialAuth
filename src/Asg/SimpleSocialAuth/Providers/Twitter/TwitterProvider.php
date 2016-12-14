@@ -6,17 +6,17 @@
  * Time: 1:18 PM
  */
 
-namespace Asg\Providers\Twitter;
+namespace Asg\SimpleSocialAuth\Providers\Twitter;
 
 
 use Abraham\TwitterOAuth\TwitterOAuth;
 use Abraham\TwitterOAuth\TwitterOAuthException;
-use Asg\Exceptions\SocialAuthInvalidParams;
-use Asg\Exceptions\SocialAuthResponseException;
-use Asg\Providers\BaseProvider;
-use Asg\Storage\SessionStorage;
-use Asg\Storage\Contracts\StorageInterface;
-use Asg\Providers\Contracts\SocialResponseInterface;
+use Asg\SimpleSocialAuth\Providers\BaseProvider;
+use Asg\SimpleSocialAuth\Storage\SessionStorage;
+use Asg\SimpleSocialAuth\Storage\Contracts\StorageInterface;
+use Asg\SimpleSocialAuth\Exceptions\SocialAuthInvalidParams;
+use Asg\SimpleSocialAuth\Exceptions\SocialAuthResponseException;
+use Asg\SimpleSocialAuth\Providers\Contracts\SocialResponseInterface;
 
 class TwitterProvider extends BaseProvider{
 
@@ -30,10 +30,7 @@ class TwitterProvider extends BaseProvider{
     protected $sessionStorage;
 
     function __construct($config,StorageInterface $sessionStorage = null){
-
-        $this->callbackUrl = isset($this->config['callback_url'])?$this->config['callback_url']:null;
-        $this->setOptions(isset($this->config['options'])?$this->config['options']:[]);
-
+        parent::__construct($config);
         if ($sessionStorage == null){
             $this->sessionStorage = new SessionStorage();
         }

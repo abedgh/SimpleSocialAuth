@@ -6,9 +6,9 @@
  * Time: 12:02 PM
  */
 
-namespace Asg\Storage;
+namespace Asg\SimpleSocialAuth\Storage;
 
-use Asg\Storage\Contracts\StorageInterface;
+use Asg\SimpleSocialAuth\Storage\Contracts\StorageInterface;
 
 class SessionStorage implements StorageInterface{
 

@@ -6,10 +6,10 @@
  * Time: 11:41 AM
  */
 
-namespace Asg\Providers;
+namespace Asg\SimpleSocialAuth\Providers;
 
 
-use Asg\Providers\Contracts\SocialResponseInterface;
+use Asg\SimpleSocialAuth\Providers\Contracts\SocialResponseInterface;
 
 abstract class BaseSocialResponse implements SocialResponseInterface{
 

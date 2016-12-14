@@ -6,7 +6,7 @@
  * Time: 11:51 AM
  */
 
-namespace Asg\Exceptions;
+namespace Asg\SimpleSocialAuth\Exceptions;
 
 
 class SocialAuthException extends \Exception{

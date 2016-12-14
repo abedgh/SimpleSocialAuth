@@ -6,17 +6,17 @@
  * Time: 6:25 PM
  */
 
-namespace Asg\Providers\Facebook;
+namespace Asg\SimpleSocialAuth\Providers\Facebook;
 
-use Asg\Exceptions\SocialAuthException;
-use Asg\Exceptions\SocialAuthResponseException;
-use Facebook\Exceptions\FacebookResponseException;
-use Facebook\Exceptions\FacebookSDKException;
 use Facebook\Facebook;
-use Asg\Providers\BaseProvider;
-use Asg\Providers\Contracts\SimpleSocialAuthInterface;
-use Asg\Providers\Contracts\SocialResponseInterface;
-use Asg\Exceptions\SocialAuthInvalidParams;
+use Facebook\Exceptions\FacebookSDKException;
+use Facebook\Exceptions\FacebookResponseException;
+use Asg\SimpleSocialAuth\Providers\BaseProvider;
+use Asg\SimpleSocialAuth\Exceptions\SocialAuthException;
+use Asg\SimpleSocialAuth\Exceptions\SocialAuthInvalidParams;
+use Asg\SimpleSocialAuth\Exceptions\SocialAuthResponseException;
+use Asg\SimpleSocialAuth\Providers\Contracts\SimpleSocialAuthInterface;
+use Asg\SimpleSocialAuth\Providers\Contracts\SocialResponseInterface;
 
 class FacebookProvider extends BaseProvider{
 
@@ -30,14 +30,16 @@ class FacebookProvider extends BaseProvider{
     protected $fb = null;
 
     function __construct($config){
-        $this->config = $config;
+        parent::__construct($config);
         $id = $this->getConfigKeyId();
         $secret = $this->getConfigKeySecret();
 
-        $this->callbackUrl = isset($this->config['callback_url'])?$this->config['callback_url']:null;
-        $this->setOptions(isset($this->config['options'])?$this->config['options']:[]);
-
         if ($id != null && $secret != null) {
+
+            if (session_status() != PHP_SESSION_ACTIVE) {
+                session_start();
+            }
+
 
             $this->fb = new Facebook([
                 'app_id' => $id,

@@ -6,7 +6,7 @@
  * Time: 6:22 PM
  */
 
-namespace Asg\Providers\Contracts;
+namespace Asg\SimpleSocialAuth\Providers\Contracts;
 
 interface SocialResponseInterface {
 

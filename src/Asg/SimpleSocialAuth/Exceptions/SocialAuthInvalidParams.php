@@ -6,7 +6,7 @@
  * Time: 7:20 PM
  */
 
-namespace Asg\Exceptions;
+namespace Asg\SimpleSocialAuth\Exceptions;
 
 
 class SocialAuthInvalidParams extends \Exception{

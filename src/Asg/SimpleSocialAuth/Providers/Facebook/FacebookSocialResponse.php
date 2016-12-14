@@ -6,11 +6,10 @@
  * Time: 7:04 PM
  */
 
-namespace Asg\Providers\Facebook;
+namespace Asg\SimpleSocialAuth\Providers\Facebook;
 
 use \Facebook\GraphNodes\GraphUser;
-use Asg\Providers\BaseSocialResponse;
-use Asg\Providers\Contracts\SocialResponseInterface;
+use Asg\SimpleSocialAuth\Providers\BaseSocialResponse;
 
 class FacebookSocialResponse extends BaseSocialResponse{
 

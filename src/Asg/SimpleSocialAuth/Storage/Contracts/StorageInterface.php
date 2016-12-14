@@ -6,7 +6,7 @@
  * Time: 11:59 AM
  */
 
-namespace Asg\Storage\Contracts;
+namespace Asg\SimpleSocialAuth\Storage\Contracts;
 
 
 interface StorageInterface {

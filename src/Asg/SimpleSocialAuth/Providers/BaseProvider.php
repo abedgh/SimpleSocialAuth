@@ -6,10 +6,10 @@
  * Time: 6:26 PM
  */
 
-namespace Asg\Providers;
+namespace Asg\SimpleSocialAuth\Providers;
 
-use Asg\Exceptions\SocialAuthInvalidParams;
-use Asg\Providers\Contracts\SimpleSocialAuthInterface;
+use Asg\SimpleSocialAuth\Exceptions\SocialAuthInvalidParams;
+use Asg\SimpleSocialAuth\Providers\Contracts\SimpleSocialAuthInterface;
 
 abstract class BaseProvider implements SimpleSocialAuthInterface {
 
@@ -19,6 +19,11 @@ abstract class BaseProvider implements SimpleSocialAuthInterface {
     protected $config = [];
     protected $options = [];
 
+    function __construct($config){
+        $this->config = $config;
+        $this->callbackUrl = isset($this->config['callback_url'])?$this->config['callback_url']:null;
+        $this->options =  isset($this->config['options'])?$this->config['options']:[];
+    }
     /**
      * @return int;
      * */

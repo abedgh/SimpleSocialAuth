@@ -1,2 +1,2 @@
 # SimpleSocialAuth
-SimpleSocialAuth library for social OAuth APis: facebook, twitter ..etc
+SimpleSocialAuth library for social OAuth APIs: facebook, twitter ..etc
