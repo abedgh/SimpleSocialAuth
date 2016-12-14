@@ -6,11 +6,8 @@
  * Time: 12:17 PM
  */
 
-
-
 require_once __DIR__.'/FakeFacebookProvider.php';
 use \Asg\SimpleSocialAuth\SimpleSocialAuthFactory;
-
 
 class FacebookTest extends PHPUnit_Framework_TestCase{
 

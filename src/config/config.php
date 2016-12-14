@@ -20,5 +20,11 @@ return [
             'id'    => 'twitter_123',
             'secret' => 'secret_password'
         ]
+    ],
+    'GooglePlus'=>[
+        'keys'=>[
+            'id'    => 'google+_123',
+            'secret' => 'secret_password'
+        ]
     ]
 ];

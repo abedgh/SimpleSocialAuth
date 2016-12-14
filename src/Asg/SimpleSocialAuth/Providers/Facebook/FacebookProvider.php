@@ -35,12 +35,9 @@ class FacebookProvider extends BaseProvider{
         $secret = $this->getConfigKeySecret();
 
         if ($id != null && $secret != null) {
-
             if (session_status() != PHP_SESSION_ACTIVE) {
                 session_start();
             }
-
-
             $this->fb = new Facebook([
                 'app_id' => $id,
                 'app_secret' => $secret,
