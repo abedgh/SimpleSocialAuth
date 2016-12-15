@@ -8,14 +8,16 @@
 
 namespace Asg\SimpleSocialAuth\Providers\GooglePlus;
 
-
 use Asg\SimpleSocialAuth\Providers\BaseSocialResponse;
 
 class GooglePlusSocialResponse extends BaseSocialResponse{
 
+    /**
+     * @var \Google_Service_Plus_Person;
+     * */
     protected $user;
 
-    function __construct($user){
+    function __construct(\Google_Service_Plus_Person $user){
         $this->user = $user;
     }
     /**
@@ -23,7 +25,7 @@ class GooglePlusSocialResponse extends BaseSocialResponse{
      * */
     public function getId()
     {
-        // TODO: Implement getId() method.
+        return $this->user->getId();
     }
 
     /**
@@ -31,7 +33,11 @@ class GooglePlusSocialResponse extends BaseSocialResponse{
      * */
     public function getEmail()
     {
-        // TODO: Implement getEmail() method.
+        $email = $this->user->getEmails();
+        if ($email && is_array($email) && count($email) > 0){
+            return $email[0]->value;
+        }
+        return null;
     }
 
     /**
@@ -39,7 +45,7 @@ class GooglePlusSocialResponse extends BaseSocialResponse{
      * */
     public function getName()
     {
-        // TODO: Implement getName() method.
+        return $this->user->getDisplayName();
     }
 
     /**
@@ -47,7 +53,12 @@ class GooglePlusSocialResponse extends BaseSocialResponse{
      * */
     public function getFirstName()
     {
-        // TODO: Implement getFirstName() method.
+        $name = $this->user->getName();
+        if ($name && $name instanceof \Google_Service_Plus_PersonName){
+            return $name->getGivenName();
+        }else{
+            return $this->extractFirstNameFromName();
+        }
     }
 
     /**
@@ -55,7 +66,12 @@ class GooglePlusSocialResponse extends BaseSocialResponse{
      * */
     public function getLastName()
     {
-        // TODO: Implement getLastName() method.
+        $name = $this->user->getName();
+        if ($name && $name instanceof \Google_Service_Plus_PersonName){
+            return $name->getFamilyName();
+        }else{
+            return $this->extractLastNameFromName();
+        }
     }
 
     /**
@@ -64,7 +80,7 @@ class GooglePlusSocialResponse extends BaseSocialResponse{
      * */
     public function getField($name)
     {
-        // TODO: Implement getField() method.
+        return isset($this->user->{$name})?$this->user->{$name}:null;
     }
 
     /**
@@ -72,14 +88,14 @@ class GooglePlusSocialResponse extends BaseSocialResponse{
      * */
     public function isVerified()
     {
-        // TODO: Implement isVerified() method.
+        return $this->user->getVerified();
     }
 
     /**
-     * @return mixed;
+     * @return \Google_Service_Plus_Person;
      * */
     public function payload()
     {
-        // TODO: Implement payload() method.
+        return $this->user;
     }
 }

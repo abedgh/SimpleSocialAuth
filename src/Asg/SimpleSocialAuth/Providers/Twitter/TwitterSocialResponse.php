@@ -49,8 +49,7 @@ class TwitterSocialResponse extends BaseSocialResponse{
      * */
     public function getFirstName()
     {
-        $names = explode(' ',$this->getName());
-        return $names[0];
+        return $this->extractFirstNameFromName();
     }
 
     /**
@@ -58,8 +57,7 @@ class TwitterSocialResponse extends BaseSocialResponse{
      * */
     public function getLastName()
     {
-        $names = explode(' ',$this->getName());
-        return $names[count($names)-1];
+        return $this->extractLastNameFromName();
     }
 
     /**

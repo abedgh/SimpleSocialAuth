@@ -8,6 +8,8 @@
 
 namespace Asg\SimpleSocialAuth\Providers;
 
+use Asg\SimpleSocialAuth\Storage\Contracts\StorageInterface;
+use Asg\SimpleSocialAuth\Storage\SessionStorage;
 use Asg\SimpleSocialAuth\Exceptions\SocialAuthInvalidParams;
 use Asg\SimpleSocialAuth\Providers\Contracts\SimpleSocialAuthInterface;
 
@@ -75,7 +77,13 @@ abstract class BaseProvider implements SimpleSocialAuthInterface {
             throw new SocialAuthInvalidParams('Options must be an array');
         }
     }
-
+    /**
+     * @param string|null $sessionId;
+     * @return StorageInterface;
+     * */
+    protected function getDefaultSessionStorage($sessionId = null){
+        return new SessionStorage($sessionId);
+    }
     /**
      * @access : protected
      * @return string|null

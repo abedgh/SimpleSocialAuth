@@ -50,6 +50,7 @@ class FacebookProvider extends BaseProvider{
 
     /**
      * @param string $callbackUrl ;
+     * @throws SocialAuthException
      * @throws SocialAuthInvalidParams
      */
     public function login($callbackUrl = '')
@@ -58,10 +59,12 @@ class FacebookProvider extends BaseProvider{
         if ($callbackUrl == '' || $callbackUrl == null){
             throw new SocialAuthInvalidParams('Callback url cant be empty');
         }
-
-        $helper = $this->fb->getRedirectLoginHelper();
-        $redirectUrl = $helper->getLoginUrl($callbackUrl,$this->options);
-        $this->redirect($redirectUrl);
+        if ($this->fb) {
+            $helper = $this->fb->getRedirectLoginHelper();
+            $this->redirect($helper->getLoginUrl($callbackUrl, $this->options));
+        }else{
+            throw new SocialAuthException('Facebook instance is null');
+        }
     }
 
     /**
@@ -71,8 +74,8 @@ class FacebookProvider extends BaseProvider{
      */
     public function getSocialResponse()
     {
-        $helper = $this->fb->getRedirectLoginHelper();
         try {
+            $helper = $this->fb->getRedirectLoginHelper();
             $accessToken = $helper->getAccessToken();
         } catch(FacebookResponseException $e) {
             throw new SocialAuthResponseException($e);

@@ -29,10 +29,10 @@ class TwitterProvider extends BaseProvider{
      * */
     protected $sessionStorage;
 
-    function __construct(array $config,StorageInterface $sessionStorage = null){
+    function __construct(array $config,StorageInterface $sessionSessionStorage = null){
         parent::__construct($config);
-        if ($sessionStorage == null){
-            $this->sessionStorage = new SessionStorage($this->providerName);
+        if ($sessionSessionStorage == null){
+            $this->sessionStorage = $this->getDefaultSessionStorage($this->getProviderName());
         }
     }
 
@@ -73,11 +73,12 @@ class TwitterProvider extends BaseProvider{
             $oAuthTokenSecret = $twitterTokens['oauth_token_secret'];
             $this->sessionStorage->clear();
             try {
-                $requestToken = $this->createTwitterOAuthInstance($oAuthToken, $oAuthTokenSecret)->oauth('oauth/access_token',
-                    ['oauth_verifier' => $oAuthVerifier]
+                $requestToken = $this->createTwitterOAuthInstance($oAuthToken, $oAuthTokenSecret)
+                    ->oauth('oauth/access_token', ['oauth_verifier' => $oAuthVerifier]
                 );
 
-                $user = $this->createTwitterOAuthInstance($requestToken['oauth_token'], $requestToken['oauth_token_secret'])
+                $user = $this->createTwitterOAuthInstance(
+                    $requestToken['oauth_token'], $requestToken['oauth_token_secret'])
                     ->get('account/verify_credentials', $this->options);
 
                 return new TwitterSocialResponse($user);

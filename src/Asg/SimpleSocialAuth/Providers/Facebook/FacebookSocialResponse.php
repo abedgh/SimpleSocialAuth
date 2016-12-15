@@ -62,6 +62,15 @@ class FacebookSocialResponse extends BaseSocialResponse{
     }
 
     /**
+     * @param string $name ;
+     * @return mixed;
+     * */
+    public function getField($name)
+    {
+        return $this->graphUser->getField($name,null);
+    }
+
+    /**
      * @return bool;
      * */
     public function isVerified()
@@ -70,19 +79,12 @@ class FacebookSocialResponse extends BaseSocialResponse{
     }
 
     /**
-     * @return mixed;
+     * @return GraphUser;
      * */
     public function payload()
     {
         return $this->graphUser;
     }
 
-    /**
-     * @param string $name ;
-     * @return mixed;
-     * */
-    public function getField($name)
-    {
-        return $this->graphUser->getField($name,null);
-    }
+
 }

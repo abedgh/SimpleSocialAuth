@@ -22,6 +22,7 @@ return [
         ]
     ],
     'GooglePlus'=>[
+        'options' => ['profile','email'],
         'keys'=>[
             'id'    => 'google+_123',
             'secret' => 'secret_password'

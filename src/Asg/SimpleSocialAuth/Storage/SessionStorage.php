@@ -31,24 +31,24 @@ class SessionStorage implements StorageInterface{
 
     /**
      * @param string $name ;
-     * @param array $value ;
+     * @param mixed $value ;
      * @return StorageInterface
      * */
-    public function set($name, array $value)
+    public function set($name, $value)
     {
         $_SESSION[$this->sessionId][$name] = $value;
     }
 
     /**
      * @param string $name ;
-     * @return array|null;
+     * @return mixed|null;
      * */
     public function get($name)
     {
-        if (!$this->exists($name)){
-            return null;
+        if ($this->exists($name)){
+            return $_SESSION[$this->sessionId][$name];
         }
-        return $_SESSION[$this->sessionId][$name];
+        return null;
     }
 
     /**
