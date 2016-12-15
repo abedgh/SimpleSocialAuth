@@ -29,10 +29,10 @@ class TwitterProvider extends BaseProvider{
      * */
     protected $sessionStorage;
 
-    function __construct($config,StorageInterface $sessionStorage = null){
+    function __construct(array $config,StorageInterface $sessionStorage = null){
         parent::__construct($config);
         if ($sessionStorage == null){
-            $this->sessionStorage = new SessionStorage();
+            $this->sessionStorage = new SessionStorage($this->providerName);
         }
     }
 

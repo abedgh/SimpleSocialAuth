@@ -29,7 +29,7 @@ class FacebookProvider extends BaseProvider{
      * */
     protected $fb = null;
 
-    function __construct($config){
+    function __construct(array $config){
         parent::__construct($config);
         $id = $this->getConfigKeyId();
         $secret = $this->getConfigKeySecret();

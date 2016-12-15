@@ -19,7 +19,7 @@ abstract class BaseProvider implements SimpleSocialAuthInterface {
     protected $config = [];
     protected $options = [];
 
-    function __construct($config){
+    function __construct(array $config){
         $this->config = $config;
         $this->callbackUrl = isset($this->config['callback_url'])?$this->config['callback_url']:null;
         $this->options =  isset($this->config['options'])?$this->config['options']:[];
